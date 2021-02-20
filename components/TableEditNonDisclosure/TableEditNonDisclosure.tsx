@@ -6,7 +6,7 @@ import Router from 'next/router'
 import { useDispatch } from 'react-redux'
 import Loading from '../LoadingPage/Loading'
 import { manageFinallize } from './manageCaseFinalize/finalize'
-import { dateToString } from './manageCaseFinalize/dateToString'
+// import { dateToString } from './manageCaseFinalize/dateToString'
 
 enum DefineIndexArray {
   IndexOne = 0,
