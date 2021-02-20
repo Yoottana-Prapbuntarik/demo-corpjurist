@@ -24,18 +24,7 @@ const WebcamCapture = ({ submitUploadCapture, startLoadingUpload, t }: any) => {
   }
 
   useEffect(() => {
-    let isSyncdevices = devices.find(item => item.deviceId !== "");
-    if (isSyncdevices === undefined) {
-      try {
-        setInterval(()=> {
-          navigator.mediaDevices.enumerateDevices().then(handleDevices);
-        },2000)
-      } catch (error) {
-        console.log(error);
-      }
-    }else{
-      navigator.mediaDevices.enumerateDevices().then(handleDevices);
-    }
+        navigator.mediaDevices.enumerateDevices().then(handleDevices);
   }, [handleDevices, devices]);
 
   const capture = useCallback(() => {

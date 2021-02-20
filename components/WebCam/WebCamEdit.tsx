@@ -10,20 +10,7 @@ const webCamEdit = ({ submitUploadCapture, t }: any) => {
   const handleDevices = useCallback(mediaDevices => setDevices(mediaDevices.filter(({ kind }) => kind === "videoinput")), [setDevices]);
 
   useEffect(() => {
-    let isSyncdevices = devices.find(item => item.deviceId !== "");
-    if (isSyncdevices === undefined) {
-      try {
-        setInterval(() => {
-          navigator.mediaDevices.enumerateDevices().then(handleDevices);
-        }, 2000)
-
-      } catch (error) {
-        console.log(error);
-      }
-    }else{
-      navigator.mediaDevices.enumerateDevices().then(handleDevices);
-
-    }
+    navigator.mediaDevices.enumerateDevices().then(handleDevices);
   }, [handleDevices, devices]);
 
   const capture = React.useCallback(() => {

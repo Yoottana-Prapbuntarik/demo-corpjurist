@@ -18,18 +18,7 @@ const WebcamStreamCapture = ({ submitUploadCapture, t }: any) => {
     const handleDevices = useCallback(mediaDevices => setDevices(mediaDevices.filter(({ kind }) => kind === "videoinput")), [setDevices]);
 
     useEffect(() => {
-        let isSyncdevices = devices.find(item => item.deviceId !== "");
-        if (isSyncdevices === undefined) {
-
-            try {
-                navigator.mediaDevices.enumerateDevices().then(handleDevices);
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }else{
-            navigator.mediaDevices.enumerateDevices().then(handleDevices);
-        }
+        navigator.mediaDevices.enumerateDevices().then(handleDevices);
     }, [handleDevices, devices])
 
     useEffect(() => {
