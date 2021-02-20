@@ -1,0 +1,17 @@
+export enum KeyManager {
+    address_1 = 'reasonAddressI',
+    address_2 = 'reasonAddressII',
+    choice_of_law = 'reasonChoiceOfLaw',
+    date_of_agreement = 'reasonDate',
+    end_date = 'reasonEndDate',
+    jurisdiction = 'reasonArbitrationJurisdiction',
+    name_1 = 'reasonDisclosureNameI',
+    name_2 = 'reasonDisclosureNameII',
+    name_of_signatory_party_1 = 'reasonNameOfSigningCompanyI',
+    name_of_signatory_party_2 = 'reasonNameOfSigningCompanyII',
+    other = 'reasonOther',
+    scope_of_discussion = 'reasonScopeOfDiscussion',
+    survive_period = 'reasonPeriodOfSecret',
+    title_and_capacity_of_signatory_party_1 = 'reasonTitleAndCapacityOfSigningCompanyI',
+    title_and_capacity_of_signatory_party_2 = 'reasonTitleAndCapacityOfSigningCompanyII',
+}

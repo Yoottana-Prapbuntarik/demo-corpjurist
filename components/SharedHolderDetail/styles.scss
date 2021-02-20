@@ -1,0 +1,58 @@
+.not-found{
+  height: 500px
+}
+.table {
+    thead {
+        th {
+            vertical-align: middle !important;
+            border-bottom: 2px solid #dee2e6;
+            text-transform: capitalize;
+        }
+    }
+  }
+  @media (max-width: 1100.98px) {
+    .btn-table {
+        font-size: 12px !important;
+    }
+  
+    .btn-table-status {
+        border: none;
+        border-radius: 5px;
+        text-transform: capitalize;
+    }
+    .table-responsive-in-mobile-shareholder {
+        display: block;
+        overflow: scroll !important;
+        -webkit-overflow-scrolling: touch;
+        &::-webkit-scrollbar {
+            width: 10px;
+          }
+               
+          /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background:rgba($color: #000000, $alpha: 0.05); 
+            border-radius: 2px;
+          }
+          
+          /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background:rgba($color: #000000, $alpha: 0.5); 
+          }
+    }
+  }
+  @media (max-width: 575.98px) {
+    .table {
+        thead {
+            th {
+                padding: 3px;
+                font-size: 12px;
+            }
+        }
+        tbody {
+            td {
+                font-size: 12px;
+                text-align: left;
+            }
+        }
+    }
+  }

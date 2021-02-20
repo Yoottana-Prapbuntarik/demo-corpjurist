@@ -1,0 +1,14 @@
+#popover-share-holder{
+    max-width: 500px;
+}
+
+@media (max-width: 500px) {  
+    #popover-share-holder{
+        max-width: 300px;
+        margin: 0px;
+        position: absolute !important;
+        top:0 !important;
+        left: 0 !important;
+        transform: translate3d(5%, 50%, 0px) !important;
+    }   
+}

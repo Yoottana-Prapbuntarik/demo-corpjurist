@@ -1,0 +1,25 @@
+.padding-1-8 {
+    padding-left: 1.8rem !important;
+}
+
+.term-and-privacy-desktop {
+    display: grid;
+}
+
+.term-and-privacy-mobile {
+    display: none;
+}
+
+@media (max-width: 1024.98px) {
+        .padding-1-8 {
+        padding-left: 0 !important;
+    }
+
+    .term-and-privacy-desktop {
+        display: none;
+    }
+
+    .term-and-privacy-mobile {
+        display: grid;
+    }
+}

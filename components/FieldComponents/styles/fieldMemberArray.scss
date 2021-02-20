@@ -1,0 +1,18 @@
+.mt1-75 {
+    margin-top: 1.75rem !important;
+}
+.btn-remove-signatory {
+    width: 100px;
+}
+.signatory-table-card {
+    display: none;
+}
+
+@media (max-width:1100.98px){
+    .signatory-table-body {
+      display: none;
+    }
+    .signatory-table-card {
+        display: block;
+    }
+}

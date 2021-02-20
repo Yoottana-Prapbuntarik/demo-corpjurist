@@ -1,0 +1,31 @@
+.padding-between-section {
+    padding-top: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    height: 100%;
+    border: 1px solid #fff;
+    cursor: pointer;
+    
+    a{
+        text-decoration: none;
+        color: #000;
+    }
+    
+    .list-items-menu{
+        background: #e0e0e0;
+        border: 1px solid rgba(218, 218, 218, 0.493);
+        padding: 6rem;
+        border-radius: 5px;
+        &:hover{
+            padding: 6rem;
+            border: 2px solid rgba(26, 92, 215, 23);
+        }
+    }
+}
+
+@media (max-width:991.98px){
+    .padding-between-section {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}

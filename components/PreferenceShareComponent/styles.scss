@@ -1,0 +1,12 @@
+.animation-fade-box {
+    animation-name: fade-in;
+    animation-duration: 1s;
+    position: relative;
+    opacity: 1;
+    top: 0;
+  }
+  
+@keyframes fade-in {
+    0%   {top: -500px; opacity: 0.1;}
+    100% {top: 0px; opacity: 1;}
+  }

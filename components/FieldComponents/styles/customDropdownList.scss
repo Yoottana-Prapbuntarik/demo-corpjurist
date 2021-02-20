@@ -1,0 +1,21 @@
+.rw-widget-container {
+  height: 3rem;
+  font-size: 0.8rem;
+  min-width: 200px;
+}
+
+.rw-widget-container:focus {
+    color: #495057 !important;
+    background-color: none !important;
+    border-color: #1360ef !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+@media (max-width:1100.98px){
+  .rw-widget-container {
+    height: 3rem;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+}
