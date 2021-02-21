@@ -5,14 +5,14 @@ const WebcamCapture = ({ submitUploadCapture, startLoadingUpload, t }: any) => {
   const [deviceId, setDeviceId] = useState({});
   const [devices, setDevices] = useState([]);
   const [showImg, setShowImg] = useState('');
+  const [capturing, setCapturing] = useState(false);
   const webcamRef = useRef(null);
-
+  
   const handleDevices = useCallback(mediaDevices => setDevices(mediaDevices.filter(({ kind }) => kind === "videoinput")), [setDevices]);
 
-  const uploadImages = async () => {
-    await startLoadingUpload()
+  const uploadImages = async (img) => {
     const data = new FormData()
-    data.append("file", showImg)
+    data.append("file", img)
     data.append("upload_preset", "Corpjurist-image")
     const response = await fetch("https://api.cloudinary.com/v1_1/dzswifsou/image/upload/", {
       method: 'POST',
@@ -20,19 +20,39 @@ const WebcamCapture = ({ submitUploadCapture, startLoadingUpload, t }: any) => {
     })
 
     const file = await response.json()
-    submitUploadCapture(file.url)
+    await setShowImg(file.url)
+    setCapturing(false)
   }
 
   useEffect(() => {
-        navigator.mediaDevices.enumerateDevices().then(handleDevices);
-  }, [handleDevices, devices]);
+    let isSyncdevices = devices.find(item => item.deviceId !== "");
+    if (isSyncdevices === undefined) {
+      try {
+        setInterval(() => {
+          navigator.mediaDevices.enumerateDevices().then(handleDevices);
+        }, 2000)
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      navigator.mediaDevices.enumerateDevices().then(handleDevices);
+    }
+  }, [handleDevices]);
 
   const capture = useCallback(() => {
+    setCapturing(true)
     const imageSrc = webcamRef.current.getScreenshot();
-    setShowImg(imageSrc)
+    uploadImages(imageSrc)
+    
   },
-    [webcamRef]
+  [webcamRef]
   );
+  
+  const  submitUpload = async (showImg) =>{
+    await submitUploadCapture(showImg)
+    await startLoadingUpload()
+  }
+  
 
   return (
     <div className="row">
@@ -57,11 +77,11 @@ const WebcamCapture = ({ submitUploadCapture, startLoadingUpload, t }: any) => {
               <img src={showImg} alt={showImg} />
             </div> : ''}
 
-          <div className={showImg === '' ? "col-10 p-0 mx-auto mt-3 w-100 d-flex justify-content-center" : "d-none"}>
+          <div className={showImg === '' && capturing === false ? "col-10 p-0 mx-auto mt-3 w-100 d-flex justify-content-center" : "d-none"}>
 
             {
 
-              <Webcam className={showImg === '' ? "d-block w-100" : "d-none"} ref={webcamRef} screenshotFormat={'image/png'} audio={false} videoConstraints={{ deviceId: deviceId }} />
+              <Webcam className={showImg === '' && capturing === false ? "d-block w-100" : "d-none"} ref={webcamRef} screenshotFormat={'image/png'} audio={false} videoConstraints={{ deviceId: deviceId }} />
             }
           </div>
 
@@ -79,7 +99,7 @@ const WebcamCapture = ({ submitUploadCapture, startLoadingUpload, t }: any) => {
                 }
               </div>
               <div className="d-block">
-                <button onClick={() => uploadImages()} className="btn btn-primary w-100" disabled={showImg === '' ? true : false}>
+                <button onClick={() => submitUpload(showImg)} className="btn btn-primary w-100" disabled={showImg === '' ? true : false}>
                   {t('next')}
                 </button>
               </div>

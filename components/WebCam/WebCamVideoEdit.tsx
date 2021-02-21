@@ -17,8 +17,15 @@ const WebCamVideoEdit = ({ submitUploadCapture, t }: any) => {
 
     const handleDevices = useCallback(mediaDevices => setDevices(mediaDevices.filter(({ kind }) => kind === "videoinput")), [setDevices]);
     useEffect(() => {
-        navigator.mediaDevices.enumerateDevices().then(handleDevices);
-    }, [handleDevices, devices])
+        let isSyncdevices = devices.find(item => item.deviceId !== "");
+        if (isSyncdevices === undefined) {
+            setInterval(() => {
+                navigator.mediaDevices.enumerateDevices().then(handleDevices);
+            }, 2000)
+        } else {
+            navigator.mediaDevices.enumerateDevices().then(handleDevices);
+        }
+    }, [handleDevices])
 
     useEffect(() => {
         if (capturing === true) {
@@ -27,7 +34,7 @@ const WebCamVideoEdit = ({ submitUploadCapture, t }: any) => {
             }, 5000);
         }
     }, [capturing])
-    
+
     const handleStartCaptureClick = useCallback(() => {
         setrandomChoice(Math.floor(Math.random() * Math.floor(dataEkyc.length)));
         setCapturing(true);
@@ -88,7 +95,7 @@ const WebCamVideoEdit = ({ submitUploadCapture, t }: any) => {
                     <div className="col-12 text-left py-2">
                         <p>
                             {
-                                dataEkyc[randomChoice]
+                                t(dataEkyc[randomChoice])
                             }
                         </p>
                     </div>
